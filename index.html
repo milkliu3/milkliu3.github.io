@@ -1,18 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
 </head>
-<style>
-.box{
-    width: 100px;
-    height: 100px;
-    background: red;
-}
-</style>
+
 <body>
-   <div class="box">1111</div>
+    <div class="box">
+        <div class="box1">
+            <div class="box3">
+                <div class="box4"><img src="" alt=""></div>
+                <p>liu</p>
+                <p>111</p>
+                <p>222</p>
+            </div>
+            <ul class="ul1">
+                <li class="l1">1
+                    <ul class="ul2">
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                    </ul>
+                </li>
+
+                <li class="l1">1
+                    <ul class="ul2">
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                    </ul>
+                </li>
+
+                <li class="l1">1
+                    <ul class="ul2">
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                    </ul>
+                </li>
+
+                <li class="l1">1
+                    <ul class="ul2">
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="box2">
+
+        </div>
+    </div>
 </body>
+<script>
+    var lis = document.querySelectorAll('.ul1>.l1');
+
+    // 点击 .l1 显示或隐藏 .ul2
+    lis.forEach(function (item) {
+        item.onclick = function (event) {
+            event.stopPropagation(); // 阻止事件冒泡
+
+            // 获取当前 .l1 下的 .ul2
+            var currentUl2 = this.querySelector('.ul2');
+
+            // 隐藏所有 .ul2
+            var allUl2s = document.querySelectorAll('.ul2');
+            allUl2s.forEach(function (ul2) {
+                ul2.style.display = 'none';
+            });
+
+            // 如果当前 .ul2 已经显示，则隐藏它，否则显示它
+            if (currentUl2.style.display === 'block') {
+                currentUl2.style.display = 'none';
+            } else {
+                currentUl2.style.display = 'block';
+            }
+        };
+    });
+
+    // 点击外部失焦时隐藏所有 .ul2
+    document.addEventListener('click', function (event) {
+        var ul2s = document.querySelectorAll('.ul2');
+        ul2s.forEach(function (ul2) {
+            ul2.style.display = 'none';
+        });
+    });
+</script>
+
 </html>
