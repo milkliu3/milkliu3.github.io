@@ -14,51 +14,111 @@
             <div class="box3">
                 <div class="box4"><img src="" alt=""></div>
                 <p>liu</p>
-                <p>111</p>
-                <p>222</p>
+                <p>my works</p>
             </div>
             <ul class="ul1">
-                <li class="l1">1
+                <li class="l1 li1">Htlm5
                     <ul class="ul2">
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
+                        <li>静态页面1</li>
+                        <li>柒品商城设计图(静态页面)</li>
+                        
+                    </ul>
+                </li>
+
+                <li class="l1 li2">JavaScript/JQuery
+                    <ul class="ul2">
+                        <li>拼图游戏</li>
+                        <li>音乐播放器</li>
+                        <li>商品管理系统</li>
                         <li>1</li>
                     </ul>
                 </li>
 
-                <li class="l1">1
+                <li class="l1 li3">Bootstrap
                     <ul class="ul2">
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
+                        <li>响应式布局网站1</li>
+                        <li>响应式布局网站2</li>
+             
                     </ul>
                 </li>
 
-                <li class="l1">1
-                    <ul class="ul2">
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                    </ul>
-                </li>
-
-                <li class="l1">1
-                    <ul class="ul2">
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                    </ul>
-                </li>
             </ul>
         </div>
 
         <div class="box2">
 
+            <div class="box5 box6">
+                <div class="b52">
+                    <div class="b51">
+                        <a href="./html/静态页面考核/1.html" target="_blank">
+                            <img src="./img/3.png" alt="">
+                        </a>
+                    </div>
+                    <p>静态页面1</p>
+                </div>
+                
+                <div class="b52">
+                    <div class="b51">
+                        <a href="./html/柒品商城设计图/首页.html" target="_blank">
+                            <img src="./img/1.png" alt="">
+                        </a>
+                    </div>
+                    <p>柒品商城设计图(静态页面)</p>
+                </div>
+            </div>
+
+            <div class="box5 box7">
+                <div class="b52">
+                    <div class="b51">
+                        <a href="./html/拼图游戏/gr.html" target="_blank">
+                            <img src="./img/2.png" alt="">
+                        </a>
+                    </div>
+                    <p>拼图游戏</p>
+                </div>
+                
+                <div class="b52">
+                    <div class="b51">
+                        <a href="./html/音乐播放器/考核.html" target="_blank">
+                            <img src="./img/6.png" alt="">
+                        </a>
+                    </div>
+                    <p>音乐播放器</p>
+                </div>
+
+                <div class="b52">
+                    <div class="b51">
+                        <a href="./html/商品管理系统/作业1-商品管理系统.html" target="_blank">
+                            <img src="./img/6.png" alt="">
+                        </a>
+                    </div>
+                    <p>商品管理系统</p>
+                </div>
+            </div>
+
+            <div class="box5 box8">
+                <div class="b52">
+                    <div class="b51">
+                        <a href="./html/响应式布局网站1/作品1.html" target="_blank">
+                            <img src="./img/4.png" alt="">
+                        </a>
+                    </div>
+                    <p>响应式布局网站1</p>
+                </div>
+                
+                <div class="b52">
+                    <div class="b51">
+                        <a href="./html/响应式布局网站2/1.html" target="_blank">
+                            <img src="./img/5.png" alt="">
+                        </a>
+                    </div>
+                    <p>响应式布局网站2</p>
+                </div>
+
+            </div>
+
         </div>
+    </div>
     </div>
 </body>
 <script>
@@ -94,6 +154,31 @@
             ul2.style.display = 'none';
         });
     });
+</script>
+<script>
+    var li1=document.querySelector('.li1');
+    var li2=document.querySelector('.li2');
+    var li3=document.querySelector('.li3');
+
+    var box6=document.querySelector('.box6');
+    var box7=document.querySelector('.box7');
+    var box8=document.querySelector('.box8');
+
+    li1.onclick=function(){
+        box6.style.display='flex';
+        box7.style.display='none';
+        box8.style.display='none';
+    }
+    li2.onclick=function(){
+        box7.style.display='flex';
+        box6.style.display='none';
+        box8.style.display='none';
+    }
+    li3.onclick=function(){
+        box8.style.display='flex';
+        box7.style.display='none';
+        box6.style.display='none';
+    }
 </script>
 
 </html>

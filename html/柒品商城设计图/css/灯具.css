@@ -1,0 +1,203 @@
+body{
+    background-color: rgb(207, 223, 237);
+}
+/* 顶部 */
+.box1{
+    width: 100%;
+    height: 100px;
+    background-color: #fff;
+}
+.banx1{
+    width: 1200px;
+    height: 80px;
+    background-color:#fff;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+.box1>.banx1>.logo{
+    width: 220px;
+    height: 60px;
+    /* background-color: aqua; */
+    padding-top: 10px;
+    float: left;
+}
+.box1>.banx1>.ssl{
+    width: 500px;
+    height: 60px;
+    /* background-color: rgb(142, 51, 169); */
+    padding-top: 20px;
+    float: left;
+    padding-left: 150px;
+    position: relative;
+}
+.box1>.banx1>.gwc{
+    width: 120px;
+    height: 60px;
+    /* background-color: rgb(224, 59, 98); */
+    padding-top: 10px;
+    float: right;
+    border: 1px solid black;
+    border-radius: 35%;
+}
+.box1>.banx1>.logo>img{
+    width: 100%;
+    height: 100%;
+}
+.box1>.banx1>.ssl>input{
+    width: 400px;
+    height: 40px;
+    border: 1px,solid,black;
+    box-sizing: border-box;
+    float: left;
+    padding-left: 40px;
+    box-sizing: border-box;
+}
+.ssl>.ss{
+    width: 30px;
+    height: 30px;
+    padding-top: 10px;
+
+    float: left;
+    position: absolute;
+    top: 20px;
+    left: 160px;
+}
+.box1>.banx1>.ssl>.anniu{
+    width: 50px;
+    height: 40px;
+    background-color: rgb(15, 75, 39);
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    float: left;
+}
+.box1 .gwc img{
+    float: left;
+    padding-top: 15px;
+}
+.box1 .gwc span{
+    float: left;
+    padding-left: 10px;
+    padding-top: 15px;
+}
+.box2{
+    width: 100%;
+    height: 70px;
+    background-color: #fff;
+}
+.box2>.banx2{
+    width: 1200px;
+    height: 100%;
+    background-color: #fff;
+    margin: 0 auto;
+}
+.box2 li{
+    float: left;
+    padding: 20px;
+   
+}
+.box3{
+    width: 1200px;
+    margin: 0 auto;
+}
+/* 内容部分 */
+.box4{
+    width: 100%;
+    height: 3200px;
+}
+.banx4{
+    width: 1200px;
+    height: 3150px;
+    margin: 0 auto;
+    background-color: #fff;
+    position: relative;
+}
+.xiaob1{
+    position: absolute;
+    top: 126px;
+    left: 200px;
+}
+.xiaob2{
+    position: absolute;
+    top: 126px;
+    left: 305px;
+}
+/* 导航栏 */
+.dh4{
+    width: 100%;
+    height: 160px;
+}
+.dh4 li{
+    float: left;
+    padding: 10px 20px;
+}
+.dh4>div{
+    width: 100%;
+    height: 40px;
+}
+/* 内容 */
+.nr4{
+    width: 1200px;
+    height: 2500px;
+    text-align: center;
+}
+.bxim4{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+}
+.xhz4>img:hover{
+    box-shadow: 3px 3px rgb(239, 142, 173);
+}
+.nr4 img{
+    width: 270px;
+    height: 270px;
+}
+.xhz4{
+    width: 270px;
+    height: 340px;
+}
+/* 底部导航栏 */
+.box10{
+    width: 100%;
+    height: 350px;
+    background-color: rgb(26, 24, 24);
+}
+.banx10{
+    width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    color: #fff;
+}
+.b10top{
+    width: 1000px;
+    height: 80px;
+    margin: 0 auto;
+    padding-top: 35px;
+}
+.b10xb{
+    width: 200px;
+    height: 80px;
+    float: left;
+    text-align: center;
+}
+.b10bt>img{
+    width: 200px;
+    height: auto;
+    float: left;
+    padding-top: 50px;
+    padding-left: 180px;
+}
+.b10bt>ul{
+    float: left;
+    padding: 50px;
+}
+.box11{
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+    background-color: rgb(42, 36, 36);
+    color: #fff;
+}

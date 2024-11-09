@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../jq压缩/jQuery.min.js"></script>
+    <style>
+        .box {
+            width: 400px;
+            height: 280px;
+            border: 1px solid #000;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        input {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #000;
+            box-sizing: border-box;
+        }
+
+        .box1,
+        .box2 {
+            width: 50%;
+            height: 240px;
+            border: 1px solid #000;
+
+            box-sizing: border-box;
+        }
+
+        .dx {
+            border: 1px solid #000;
+            width: auto;
+            float: left;
+            margin: 3px;
+        }
+
+        span {
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <input type="text" placeholder="请输入内容">
+        <div class="box1">
+            <p>已完成</p>
+            <div class="dx">玩游戏</div>
+            <div class="dx">看电视</div>
+        </div>
+
+        <div class="box2">
+            <p>未完成</p>
+            <div class="dx">看电视 <span>X</span></div>
+        </div>
+    </div>
+</body>
+<script>
+    // 输入框监听回车键
+    var $input = $("input")
+    $input.on("keydown", function (e) {
+        if (e.keyCode === 13 && $input.val() !== '') {
+            $('.box1').append(`<div class="dx">${$input.val()}</div>`)
+        }
+        $input.val('')
+    })
+
+    $('.box1').on('click', '.dx', function () {
+        $('<span>X</span>').appendTo($(this))
+        $('.box2').append($(this))
+    });
+
+    $('.box2').on('click', '.dx span', function () {
+        $(this).parent().remove();
+    });
+</script>
+
+</html>

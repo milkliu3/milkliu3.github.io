@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">
+        <li><img src="./img/4.jpg" alt=""></li>
+        <li><img src="./img/4.jpg" alt=""></li>
+        <li><img src="./img/4.jpg" alt=""></li>
+        <li><img src="./img/4.jpg" alt=""></li>
+        <li><img src="./img/4.jpg" alt=""></li>
+        <li><img src="./img/4.jpg" alt=""></li>
+        <li><img src="./img/4.jpg" alt=""></li>
+        <li><img src="./img/4.jpg" alt=""></li>
+        <li><img src="./img/4.jpg" alt=""></li>
+    </div>
+    <button id="reset">复原</button>
+    <button id="start">开始</button>
+    <style>
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 300px;
+            height: 300px;
+            background-color: aqua;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: flex-start;
+            position: relative;
+
+        }
+
+        .box li {
+            width: 96px;
+            height: 96px;
+            background-color: red;
+            margin: 2px;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 0.5s;
+        }
+
+        .box li img {
+            width: 300%;
+            height: 300%;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+        }
+    </style>
+    <script>
+        //计算每个图片位置
+        var box = document.querySelector('.box');
+        var lis = box.querySelectorAll('li');
+        lis.forEach((a, b) => {
+            console.log(a, b);
+            a.style.top = Math.floor(b / 3) * 100 + 'px';
+            a.style.left = (b % 3) * 100 + 'px';
+
+            var img = a.querySelector('img');
+            img.style.top = Math.floor(b / 3) * -96 + 'px';
+            img.style.left = (b % 3) * -96 + 'px';
+        });
+    </script>
+    <script>
+        // 记录被点击的第一个图片
+        let firstItem = null;
+
+        // 为所有图片添加点击事件
+        lis.forEach(li => {
+            li.addEventListener('click', function () {
+                if (!firstItem) {
+                    firstItem = li;
+                    firstItem.classList.add('selected');
+                } else {
+                    if (firstItem !== li) {
+                        // 交换位置
+                        const tempTop = firstItem.style.top;
+                        const tempLeft = firstItem.style.left;
+
+                        firstItem.style.top = li.style.top;
+                        firstItem.style.left = li.style.left;
+
+                        li.style.top = tempTop;
+                        li.style.left = tempLeft;
+
+                        // 清除选中状态
+                        firstItem.classList.remove('selected');
+                        li.classList.remove('selected');
+                        firstItem = null;
+                    } else {
+                        // 如果点击的是同一个图片，则取消选中状态
+                        firstItem.classList.remove('selected');
+                        firstItem = null;
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        function restoreImages() {
+            lis.forEach((li, index) => {
+                li.style.top = Math.floor(index / 3) * 100 + 'px';
+                li.style.left = (index % 3) * 100 + 'px';
+
+                var img = li.querySelector('img');
+                img.style.top = Math.floor(index / 3) * -96 + 'px';
+                img.style.left = (index % 3) * -96 + 'px';
+            });
+        }
+        document.getElementById('reset').addEventListener('click', () => {
+            restoreImages();
+
+        });
+
+        // 打乱图片顺序
+        document.getElementById("start").addEventListener('click', function () {
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1)); // 生成一个0到i之间的随机整数
+                    [array[i], array[j]] = [array[j], array[i]]; // 交换元素
+                }
+                return array;
+            }
+
+            const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+            const shuffledNumbers = shuffleArray(numbers);
+            console.log(shuffledNumbers);
+        })
+    </script>
+</body>
+
+</html>

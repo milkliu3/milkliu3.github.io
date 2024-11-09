@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3x3 拼图游戏</title>
+    <style>
+        #puzzle {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 5px;
+            width: 320px;
+            margin: 0 auto;
+        }
+
+        .tile {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="puzzle"></div>
+
+    <script>
+        const puzzle = document.getElementById('puzzle');
+        const tiles = [];
+        let emptyIndex = 8;
+
+        // 初始化拼图
+        function initPuzzle() {
+            for (let i = 0; i < 9; i++) {
+                const tile = document.createElement('div');
+                tile.className = 'tile';
+                tile.textContent = i === 8 ? '' : (i + 1).toString();
+                tile.id = i;
+                tile.addEventListener('click', moveTile);
+                puzzle.appendChild(tile);
+                tiles.push(tile);
+            }
+
+            shuffleTiles();
+        }
+
+        // 随机打乱拼图
+        function shuffleTiles() {
+            let currentIndex = tiles.length;
+            let temporaryValue, randomIndex;
+
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                temporaryValue = tiles[currentIndex];
+                tiles[currentIndex] = tiles[randomIndex];
+                tiles[randomIndex] = temporaryValue;
+            }
+
+            tiles.forEach((tile, index) => {
+                tile.style.order = index;
+                tile.textContent = index === 8 ? '' : (index + 1).toString();
+            });
+        }
+
+        // 移动瓷砖
+        function moveTile(event) {
+            const tileId = parseInt(event.target.id);
+            if (Math.abs(tileId - emptyIndex) === 1 || Math.abs(tileId - emptyIndex) === 3) {
+                // 交换位置
+                [tiles[tileId].textContent, tiles[emptyIndex].textContent] = [tiles[emptyIndex].textContent, tiles[tileId].textContent];
+                [tiles[tileId], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[tileId]];
+                emptyIndex = tileId;
+            }
+        }
+
+        // 检查是否完成
+        function checkComplete() {
+            const complete = tiles.map(tile => tile.textContent).join('');
+            const expected = '12345678';
+            return complete === expected;
+        }
+
+        // 初始化游戏
+        initPuzzle();
+
+        // 添加检查功能
+        setInterval(() => {
+            if (checkComplete()) {
+                alert('恭喜你，拼图完成！');
+            }
+        }, 100);
+    </script>
+</body>
+
+</html>

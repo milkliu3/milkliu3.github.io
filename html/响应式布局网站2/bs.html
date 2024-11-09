@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>轮播示例</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <style>
+         .box7 {
+    padding-top: 50px;
+    background-color: #080e37;
+}
+
+.b7-1 {
+    text-align: center;
+}
+
+.b7-2 {
+    .carousel {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .b7-3 {
+        border: 0.5px solid #3c3f5d;
+        background-color: #01062c;
+        border-radius: 10px;
+        margin: 10px;
+        padding: 10px;
+        float: left; /* Add this to make items line up horizontally */
+        width: calc(33.333% - 20px); /* Adjust width based on margin */
+    }
+
+    .ball {
+        padding: 10px;
+        background-color: #e61e5e;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+    }
+
+    .b7-p1 {
+        font-size: 22px;
+    }
+
+    .b7-p2 {
+        font-size: 16px;
+        font-weight: 100;
+        color: #999999;
+    }
+
+    .b7-4 {
+        margin-top: 16px;
+        span {
+            color: #fff;
+            background-color: #f65d07;
+            padding: 3px;
+            border-radius: 3px;
+        }
+    }
+
+    .carousel-indicators {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        span.indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+    }
+}
+        </style>
+    </head>
+    <body>
+        <div class="box7">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 b7-1">
+                        <div><span class="p1">Testimonials</span></div>
+                        <p class="p2">What Our Gamer Says</p>
+                    </div>
+                </div>
+                <div class="row b7-2">
+                    <div id="carousel" class="carousel">
+                        <!-- Carousel items -->
+                        <div class="b7-3">
+                            <div class="ball"></div>
+                            <p class="b7-p1">Michael Smith</p>
+                            <p class="b7-p2">Disc Player</p>
+                            <p class="b7-p3">Velit veniam non laborum irure dolor do incididunt fugiat proident reprehenderit quis exercitation enim. Exercitation dolore commodo aliqua pariatur labore ullamco anim.</p>
+                            <div class="b7-4">
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                            </div>
+                        </div>
+                        <!-- Repeat the above block for each item, up to 6 items -->
+                    </div>
+                    <!-- Carousel indicators -->
+                    <div class="carousel-indicators">
+                        <span class="indicator" data-index="0"></span>
+                        <span class="indicator" data-index="1"></span>
+                        <!-- Repeat for each item -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var currentIndex = 0;
+    var items = document.querySelectorAll('.b7-3');
+    var indicators = document.querySelectorAll('.indicator');
+
+    function updateCarousel() {
+        items[currentIndex].style.transform = 'translateX(-100%)';
+        currentIndex = (currentIndex + 1) % items.length;
+        items[currentIndex].style.transform = 'translateX(0)';
+        setTimeout(updateCarousel, 3000); // Change image every 3 seconds
+    }
+
+    function setActiveIndicator(index) {
+        indicators.forEach(function(indicator, i) {
+            indicator.style.backgroundColor = i === index ? '#f65d07' : '#fff';
+        });
+    }
+
+    updateCarousel();
+    indicators.forEach(function(indicator, i) {
+        indicator.addEventListener('click', function() {
+            items[currentIndex].style.transform = 'translateX(100%)';
+            currentIndex = i;
+            items[currentIndex].style.transform = 'translateX(0)';
+            setActiveIndicator(currentIndex);
+        });
+    });
+});
+        </script>
+    </body>
+    </html>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+  </body>
+</html>

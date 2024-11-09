@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>简易商品管理系统</title>
+    <script src="../jq压缩/jQuery.min.js"></script>
+    <style>
+        #productTable {
+            border: 1px solid #000000;
+
+        }
+
+        #productTable td,
+        #productTable th {
+            border: 1px solid #000000;
+            padding: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>简易商品管理系统</h1>
+    <form id="productForm">
+        名称:<input type="text" id="name"> </br>
+        价格:<input type="text" id="price"> </br>
+        库存:<input type="text" id="stock"> </br>
+        图片:<input type="file" accept="image/*" id="img"> </br>
+        <button type="button" id="addButton">添加商品</button>
+    </form>
+
+    <input type="text" id="searchInput" placeholder="输入商品名称搜索">
+    <button type="button" id="searchButton">搜索商品</button>
+    <table id="productTable" cellspacing="0">
+        <tr>
+            <th>名称</th>
+            <th>价格</th>
+            <th>库存</th>
+            <th>预览</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td class="uname">1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td class="dlt">删除</td>
+           
+        </tr>
+        <!-- 商品信息行将被动态添加 -->
+    </table>
+    <div>Total Stock: <span id="totalStock">0</span></div>
+    <script>
+        // 删除键点击事件
+        var sc = (' <td class="dlt">删除</td>')
+        // 添加商品
+        var $name = $('#name');
+        var $price = $('#price');
+        var $stock = $('#stock');
+        var $img = $('#img');
+        $('#addButton').click(function () {
+            if ($name.val() == '' || $price.val() == '' || $stock.val() == '' || $img.val() == '') {
+                alert('请输入完整信息');
+                return;
+            }
+            var name = $name.val();
+            var price = $price.val();
+            var stock = $stock.val();
+            var img = $img.val();
+            console.log(name, price, stock, img);
+
+            var news = `
+            <tr>
+        <td class="uname">${name}</td>
+        <td>${price}</td>
+        <td>${stock}</td>
+        <td> <img src="${img}" alt="nopotho"> </td>          
+        <td class="dlt">删除</td>
+      </tr>
+            `
+            $("#productTable").append(news);
+            $name.val('')
+            $price.val('')
+            $stock.val('')
+            $img.val('')
+            //删除键
+            $('tr').on('click', $('.dlt'), function () {
+                $(this).remove()
+            })
+        });
+      
+        // 搜索商品
+        $('#searchButton').click(function () {
+            var ss = $('#searchInput').val()
+            var found = false;
+
+           
+            $('#productTable tr').each(function () {
+                if ($(this).is(':first-child')) return; // 跳过表头
+
+                var nameCell = $(this).find('.uname');
+                if (nameCell.length > 0 && nameCell.text().trim().toLowerCase() === ss.toLowerCase()) {
+                    found = true;
+                    $(this).show(); // 显示匹配的行
+                } else {
+                    $(this).hide(); // 隐藏不匹配的行
+                }
+            });
+
+            if (!found) {
+               alert("没有找到这个商品");
+            }
+
+            $('#searchInput').val('');
+        });
+
+    </script>
+</body>
+
+</html>

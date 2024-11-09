@@ -1,0 +1,287 @@
+/* 导航栏 */
+.box1{
+    width: 100%;
+    height: 60px;
+    background-color: #76c7c0;
+    color: #fff;
+}
+.banx1{
+    width: 70%;
+    height: 60px;
+    margin: 0 auto;
+    /* background-color: red; */
+
+}
+.lb1{
+    width: 150px;
+    height: 60px;
+    /* background-color: darkblue; */
+    float: left;
+    font-size: 24px;
+     line-height: 60px;
+}
+.rb1{
+    width: 600px;
+    height: 60px;
+    /* background-color: darkblue; */
+    float: right;
+    position: relative;
+   
+}
+.rb1>ul>li{
+    float: left;
+    padding: 12px;
+    padding-top: 15px;
+
+}
+.banx1 .ej{
+    width: 200px;
+    height: 70px;
+    background-color: rgb(235, 82, 82);
+    border-radius: 5%;
+    position: absolute;
+    top: 60px;
+    right: 170px;
+    display: none;
+    z-index: 9;
+}
+.rb1 .mej:hover  .ej{
+   display: block;
+}
+.rb1>span{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 20px;
+
+}
+.rb1>span{
+    width: 20px;
+    height:100%;
+}
+/* 轮播图 */
+.box2{
+    width: 100%;
+    height: 400px;
+  
+}
+.banx2{
+    width: 70%;
+    height: 400px;
+    margin: 0 auto;
+    position: relative;
+}
+.banx2>img{
+    width: 100%;
+    height: auto;
+}
+.banx2>.l2{
+    position: absolute;
+    top: 180px;
+}
+.r2{
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    top: 250px;
+    right: 230px;
+}
+.box3{
+    width: 100%;
+    height: 100px;
+}
+.banx3{
+    padding-top: 10px;
+    width: 70%;
+    height: 80px;
+    margin: 0 auto;
+    background-color: rgb(209, 216, 223);
+}
+.banx3>.r3{
+    width: 120px;
+    height: 40px;
+    float: right;
+    background-color: rgb(244, 99, 99); 
+    margin-right: 20px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 40px;
+    box-sizing: border-box;
+}
+.box4{
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+}
+.banx4{
+    width: 70%;
+    height: 300px;
+    margin: 0 auto;
+    /* background-color: rgb(240, 126, 241); */
+    display: flex;
+    justify-content: space-between;
+}
+.banx4>.b41{
+    width: 220px;
+    height: 280px;
+    float: left;
+    background-color:rgb(209, 216, 223);
+    text-align: center;
+}
+.b41>.p1{
+    width: 200px;
+    height: 40px;
+    margin: 0 auto;
+    background-color: red;
+    text-align: center;
+    line-height: 40px;
+    margin-top: 20px;
+}
+
+
+
+.box5{
+    width: 100%;
+    height: 400px;
+}
+.banx51{
+    width: 100%;
+    height: 200px;
+    background-color: rgb(209, 216, 223);
+    text-align: center;
+}
+.banx52{
+    width: 70%;
+    height: 200px;
+
+    margin: 0 auto;
+    margin-top: 40px;
+    padding-left: 140px;
+}
+.banx52>.im1{
+    width: 250px;
+    height: 150px;
+    float: left;
+
+}
+
+.banx52>.im2{
+    width: 400px;
+    height: 250px;
+    float: left;
+
+}
+.banx52>.im3{
+    width: 250px;
+    height: 150px;
+    float: left;
+
+}
+.banx52>.im1>img{
+    width: 250px;
+    height: auto;
+}
+.banx52>.im2>img{
+    width: 400px;
+    height: auto;
+}
+.banx52>.im3>img{
+    width: 250px;
+    height: auto;
+}
+.box6{
+    width: 100%;
+    height: 200px;
+    /* background-color: aqua; */
+}
+.banx6{
+    width: 70%;
+    height: 200px;
+    /* background-color: aquamarine; */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+.banx61{
+    width: 200px;
+    height: 200px;
+    /* background-color: blue; */
+   
+}
+.banx62{
+    width: 600px;
+    height: 200px;
+    /* background-color: blue; */
+
+}
+.banx63{
+    width: 250px;
+    height: 200px;
+    /* background-color: blue; */
+}
+.banx61 li{
+    padding-top: 5px;
+}
+.banx62>.y62{
+    text-align: center;
+    padding-top: 30px;
+   display: flex;
+   justify-content: space-between;
+}
+.banx62 .y1{
+    width: 120px;
+    /* background-color: aqua; */
+    float: left;
+}
+.banx63>.p63
+{
+    width: 250px;
+    height: 120px;
+    background-color: aqua;
+    border-radius: 10%;
+    text-align: justify;
+}
+.box7{
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+}
+.banx7{
+    width: 70%;
+    height: 40px;
+    margin: 0 auto;
+}
+.banx7>.b71{
+    width: 200px;
+    float: left;
+    font-size: 20px;
+   
+}
+.banx7>.b72{
+    width: 800px;
+    float: left;
+   
+}
+.banx7>.b73{
+    width: 30px;
+    float: left;
+
+}
+.banx7>.b74{
+    width: 30px;
+    float: left;
+
+}
+.box8
+{
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+}
+.banx8{
+    width: 70%;
+    height: 50px;
+    margin: 0 auto;
+    background-image: url(../images/1.png);
+}
