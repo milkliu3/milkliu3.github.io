@@ -1,36 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>简易商品管理系统</title>
-    <script src="../jq压缩/jQuery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        #productTable {
-            border: 1px solid #000000;
-
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
         }
 
-        #productTable td,
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #productForm, #searchInput {
+            margin-bottom: 20px;
+        }
+
+        #productForm input[type="text"], #searchInput {
+            padding: 6px 10px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 200px;
+            outline: none;
+        }
+
+        #addButton, #searchButton {
+            padding: 8px 16px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #addButton:hover, #searchButton:hover {
+            background-color: #218838;
+        }
+
+        #productTable {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #productTable th, #productTable td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
         #productTable th {
-            border: 1px solid #000000;
-            padding: 0px;
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        #productTable img {
+            width: 50px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .dlt {
+            color: #dc3545;
+            cursor: pointer;
+        }
+
+        .dlt:hover {
+            text-decoration: underline;
+        }
+
+        #totalStock {
+            font-weight: bold;
+            color: #007bff;
         }
     </style>
 </head>
-
 <body>
     <h1>简易商品管理系统</h1>
     <form id="productForm">
-        名称:<input type="text" id="name"> </br>
-        价格:<input type="text" id="price"> </br>
-        库存:<input type="text" id="stock"> </br>
-        图片:<input type="file" accept="image/*" id="img"> </br>
+        名称: <input type="text" id="name"> </br>
+        价格: <input type="text" id="price"> </br>
+        库存: <input type="text" id="stock"> </br>
+        图片: <input type="file" accept="image/*" id="img"> </br>
         <button type="button" id="addButton">添加商品</button>
     </form>
 
     <input type="text" id="searchInput" placeholder="输入商品名称搜索">
     <button type="button" id="searchButton">搜索商品</button>
+
     <table id="productTable" cellspacing="0">
         <tr>
             <th>名称</th>
@@ -39,82 +106,95 @@
             <th>预览</th>
             <th>操作</th>
         </tr>
-        <tr>
-            <td class="uname">1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td class="dlt">删除</td>
-           
-        </tr>
-        <!-- 商品信息行将被动态添加 -->
     </table>
+
     <div>Total Stock: <span id="totalStock">0</span></div>
+
     <script>
-        // 删除键点击事件
-        var sc = (' <td class="dlt">删除</td>')
-        // 添加商品
         var $name = $('#name');
         var $price = $('#price');
         var $stock = $('#stock');
         var $img = $('#img');
+
+        // 添加商品
         $('#addButton').click(function () {
-            if ($name.val() == '' || $price.val() == '' || $stock.val() == '' || $img.val() == '') {
+            if (!$name.val() || !$price.val() || !$stock.val() || !$img.val()) {
                 alert('请输入完整信息');
                 return;
             }
+
+            // 获取表单数据
             var name = $name.val();
             var price = $price.val();
             var stock = $stock.val();
-            var img = $img.val();
-            console.log(name, price, stock, img);
+            var file = $img[0].files[0];
+            var imgURL = URL.createObjectURL(file); // 获取图片的 URL
 
-            var news = `
-            <tr>
-        <td class="uname">${name}</td>
-        <td>${price}</td>
-        <td>${stock}</td>
-        <td> <img src="${img}" alt="nopotho"> </td>          
-        <td class="dlt">删除</td>
-      </tr>
-            `
-            $("#productTable").append(news);
-            $name.val('')
-            $price.val('')
-            $stock.val('')
-            $img.val('')
-            //删除键
-            $('tr').on('click', $('.dlt'), function () {
-                $(this).remove()
-            })
+            // 创建商品行
+            var newRow = `
+                <tr>
+                    <td class="uname">${name}</td>
+                    <td>${price}</td>
+                    <td>${stock}</td>
+                    <td><img src="${imgURL}" alt="商品图片"></td>
+                    <td class="dlt">删除</td>
+                </tr>
+            `;
+
+            $("#productTable").append(newRow);
+
+            // 清空输入框
+            $name.val('');
+            $price.val('');
+            $stock.val('');
+            $img.val('');
+
+            updateTotalStock();
         });
-      
+
+        // 事件委托删除商品
+        $('#productTable').on('click', '.dlt', function () {
+            $(this).closest('tr').remove();
+            updateTotalStock();
+        });
+
         // 搜索商品
         $('#searchButton').click(function () {
-            var ss = $('#searchInput').val()
+            var searchName = $('#searchInput').val().trim().toLowerCase();
             var found = false;
 
-           
-            $('#productTable tr').each(function () {
-                if ($(this).is(':first-child')) return; // 跳过表头
+            $('#productTable tr').each(function (index) {
+                if (index === 0) return; // 跳过表头
 
-                var nameCell = $(this).find('.uname');
-                if (nameCell.length > 0 && nameCell.text().trim().toLowerCase() === ss.toLowerCase()) {
+                var nameCell = $(this).find('.uname').text().trim().toLowerCase();
+                if (nameCell === searchName) {
                     found = true;
-                    $(this).show(); // 显示匹配的行
+                    $(this).show(); // 显示匹配行
                 } else {
-                    $(this).hide(); // 隐藏不匹配的行
+                    $(this).hide(); // 隐藏不匹配行
                 }
             });
 
             if (!found) {
-               alert("没有找到这个商品");
+                alert("没有找到这个商品");
             }
 
             $('#searchInput').val('');
         });
 
+        // 更新总库存
+        function updateTotalStock() {
+            var totalStock = 0;
+            $('#productTable tr').each(function (index) {
+                if (index === 0) return; // 跳过表头
+
+                var stock = parseInt($(this).find('td:nth-child(3)').text(), 10);
+                if (!isNaN(stock)) {
+                    totalStock += stock;
+                }
+            });
+            $('#totalStock').text(totalStock);
+        }
     </script>
 </body>
-
 </html>
