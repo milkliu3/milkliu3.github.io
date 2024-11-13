@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="map">
+        <div class="box1">
+            <img src="./img/1.jpg" alt="" id="box1Img">
+            <div class="xbox"></div>
+        </div>
+        <div class="box2">
+            <img src="./img/1.jpg" alt="" id="box2Img">
+        </div>
+    </div>
+
+    <div class="xb">
+        <div class="box3" id="a1">
+            <img src="./img/1.jpg" alt="">
+        </div>
+        <div class="box3" id="a2">
+            <img src="./img/2.jpg" alt="">
+        </div>
+        <div class="box3" id="a3">
+            <img src="./img/3.jpg" alt="">
+        </div>
+        <div class="box3" id="a4">
+            <img src="./img/4.jpg" alt="">
+        </div>
+    </div>
+
+    <!-- 倍数控制按钮 -->
+    <div class="controls">
+        <button id="zoom200">200%</button>
+        <button id="zoom400">400%</button>
+        <button id="zoom800">800%</button>
+    </div>
+
+    <style>
+        .xb {
+            margin-top: 5px;
+            width: 400px;
+            height: 100px;
+            background-color: rgb(164, 187, 187);
+        }
+
+        .box3 {
+            width: 80px;
+            height: 80px;
+            margin: 10px;
+            background-color: brown;
+            float: left;
+        }
+
+        .box3 > img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .map {
+            width: 820px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .box1 {
+            width: 400px;
+            height: 400px;
+            background-color: aqua;
+            margin-right: 10px;
+            position: relative;
+        }
+
+        .box1 > img {
+            width: 400px;
+            height: 400px;
+        }
+
+        .box2 {
+            width: 400px;
+            height: 400px;
+            background-color: aquamarine;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .box2 > img {
+            width: 800px;
+            height: 800px;
+            transition: transform 0.1s ease, width 0.1s ease, height 0.1s ease;
+        }
+
+        .xbox {
+            width: 200px;
+            height: 200px;
+            background-color: rgba(213, 98, 98, 0.223);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        .controls button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        var box2 = document.querySelector('.box2 > img');
+        var zoomFactor = 2;  // 默认倍数是200%
+
+        document.querySelector('.box1').addEventListener('mousemove', function (event) {
+            // 项目内的坐标 = 鼠标悬浮位置 - 页面距离元素的距离
+            var mouseX = event.clientX - this.offsetLeft;
+            var mouseY = event.clientY - this.offsetTop;
+
+            // 获取元素的宽高
+            var xbox = document.querySelector('.xbox');
+            var xboxWidth = xbox.offsetWidth;
+            var xboxHeight = xbox.offsetHeight;
+
+            // 计算新位置
+            var newLeft = mouseX - xboxWidth / 2;
+            var newTop = mouseY - xboxHeight / 2;
+
+            // 检查边界
+            var box1Width = this.offsetWidth;
+            var box1Height = this.offsetHeight;
+
+            // 左边界检查
+            if (newLeft < 0) {
+                newLeft = 0;
+            } else if (newLeft + xboxWidth > box1Width) {
+                newLeft = box1Width - xboxWidth;
+            }
+
+            // 上边界检查
+            if (newTop < 0) {
+                newTop = 0;
+            } else if (newTop + xboxHeight > box1Height) {
+                newTop = box1Height - xboxHeight;
+            }
+
+            // 设置新位置
+            xbox.style.left = newLeft + 'px';
+            xbox.style.top = newTop + 'px';
+
+            // 根据倍数调整图片位置
+            var imgLeft = newLeft * zoomFactor;
+            var imgTop = newTop * zoomFactor;
+
+            // 设置 .box2 中 img 的位置
+            box2.style.transform = `translate(-${imgLeft}px, -${imgTop}px)`;
+        });
+
+        // 图片切换
+        var a1 = document.querySelector('#a1');
+        var a2 = document.querySelector('#a2');
+        var a3 = document.querySelector('#a3');
+        var a4 = document.querySelector('#a4');
+
+        a1.addEventListener('click', function() {
+            document.getElementById('box1Img').src = './img/1.jpg';
+            document.getElementById('box2Img').src = './img/1.jpg';
+        });
+
+        a2.addEventListener('click', function() {
+            document.getElementById('box1Img').src = './img/2.jpg';
+            document.getElementById('box2Img').src = './img/2.jpg';
+        });
+
+        a3.addEventListener('click', function() {
+            document.getElementById('box1Img').src = './img/3.jpg';
+            document.getElementById('box2Img').src = './img/3.jpg';
+        });
+
+        a4.addEventListener('click', function() {
+            document.getElementById('box1Img').src = './img/4.jpg';
+            document.getElementById('box2Img').src = './img/4.jpg';
+        });
+
+        // 倍数按钮控制
+        document.getElementById('zoom200').addEventListener('click', function() {
+            zoomFactor = 2;  // 设置为2倍
+            box2.style.width = '800px';  // 更新图片的宽度
+            box2.style.height = '800px';  // 更新图片的高度
+        });
+
+        document.getElementById('zoom400').addEventListener('click', function() {
+            zoomFactor = 4;  // 设置为4倍
+            box2.style.width = '1600px';  // 更新图片的宽度
+            box2.style.height = '1600px';  // 更新图片的高度
+        });
+
+        document.getElementById('zoom800').addEventListener('click', function() {
+            zoomFactor = 8;  // 设置为8倍
+            box2.style.width = '3200px';  // 更新图片的宽度
+            box2.style.height = '3200px';  // 更新图片的高度
+        });
+    </script>
+</body>
+
+</html>
